@@ -4,7 +4,7 @@ docker-compose down
 docker run --rm \
   --volume gitea_gitea:/data \
   --volume $(pwd):/backup \
-  debian:bullseye \
+  debian:bullseye-slim \
   tar -cvf /backup/gitea_data_$(date '+%Y-%m-%d').tar /data
 
 # Backup DB
