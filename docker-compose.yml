@@ -5,13 +5,16 @@ networks:
     external: false
 
 volumes:
-  gitea:
+  gitea-data:
+    driver: local
+  gitea-config:
     driver: local
 
 services:
   server:
-    image: gitea/gitea:1.15.6
-    container_name: gitea
+    # image: gitea/gitea:1.15.6
+    image: gitea/gitea:1.15.6-rootless
+    container_name: gitea_container
     environment:
       # - USER_UID=1000
       # - USER_GID=1000
@@ -24,8 +27,10 @@ services:
     networks:
       - gitea
     volumes:
-      # - ./gitea:/data
-      - gitea:/data
+      # - ./data:/var/lib/gitea
+      - gitea-data:/var/lib/gitea
+      # - ./config:/etc/gitea
+      - gitea-config:/etc/gitea
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
