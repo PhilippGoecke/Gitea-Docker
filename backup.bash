@@ -1,4 +1,5 @@
 docker-compose down
+# docker-compose exec server bash
 
 # Backup Volumes
 docker run --rm \
@@ -9,7 +10,7 @@ docker run --rm \
   tar -cvf /backup/gitea_data_$(date '+%Y-%m-%d').tar /gitea
 
 # Backup Gitea
-# docker exec -u <OS_USERNAME> -it -w <--tempdir> $(docker ps -qf "name=<NAME_OF_DOCKER_CONTAINER>") bash -c '/app/gitea/gitea dump -c </path/to/app.ini>'
+# docker exec -u <OS_USERNAME> -it -w <--tempdir> $(docker ps -qf "name=<NAME_OF_DOCKER_CONTAINER>") bash -c '/app/gitea/gitea dump -c </etc/gitea/app.ini>'
 
 # Backup DB
 docker exec gitea-docker_db_1 /usr/bin/mysqldump -u root --password=gitea gitea > gitea_data_$(date '+%Y-%m-%d').sql
