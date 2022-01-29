@@ -1,10 +1,15 @@
 #docker-compose up --no-start
 #docker-compose up -d
 #docker-compose logs -f
+#docker-compose stop
+#docker-compose rm
 #docker-compose down
+#docker-compose down --volumes # Remove named volumes
+echo "docker-compose down --volumes # Remove named volumes"
 
 # decrypt & decompress Backup
-gpg --pinentry-mode=loopback --passphrase 'secret' --decrypt gitea_backup_$(date '+%Y-%m-%d').tar.gz.gpg | tar -xvzf -
+#gpg --pinentry-mode=loopback --passphrase 'secret' --decrypt gitea_backup_$(date '+%Y-%m-%d').tar.gz.gpg | tar -xvzf -
+age --decrypt -i key.txt gitea_backup_$(date '+%Y-%m-%d').tar.gz.age > gitea_backup_$(date '+%Y-%m-%d').tar.gz
 
 # tar -tvf gitea_data_$(date '+%Y-%m-%d').tar
 # Restore Volume
