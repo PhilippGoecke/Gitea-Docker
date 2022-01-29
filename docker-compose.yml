@@ -12,8 +12,8 @@ volumes:
 
 services:
   server:
-    # image: gitea/gitea:1.15.9
-    image: gitea/gitea:1.15.9-rootless
+    # image: gitea/gitea:1.15.10
+    image: gitea/gitea:1.15.10-rootless
     container_name: gitea_container
     environment:
       # - USER_UID=1000
@@ -39,7 +39,7 @@ services:
     depends_on:
       - db
   db:
-    image: mysql:8.0
+    image: mysql:8.0.28
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=gitea
@@ -50,4 +50,3 @@ services:
       - gitea
     volumes:
       - ./mysql:/var/lib/mysql
-
